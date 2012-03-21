@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    roart (0.1.9)
+    ludo-roart (0.1.10)
       activesupport (>= 2.0.0)
       mechanize (>= 1.0.0)
 
@@ -27,7 +27,7 @@ GEM
       nokogiri (~> 1.4)
       ntlm-http (~> 0.1, >= 0.1.1)
       webrobots (~> 0.0, >= 0.0.9)
-    mime-types (1.17.2)
+    mime-types (1.18)
     net-http-digest_auth (1.2)
     net-http-persistent (2.5.2)
     nokogiri (1.5.2)
@@ -53,5 +53,5 @@ DEPENDENCIES
   activesupport (= 3.0.12)
   bones (>= 2.5.1)
   i18n
-  roart!
+  ludo-roart!
   rspec (= 2.8.0)
