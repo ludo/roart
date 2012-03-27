@@ -27,7 +27,7 @@ module Roart
         elsif file.is_a?(String)
           Attachment.new(File.basename(file), File.open(file, 'rb'))
         elsif file.respond_to?(:open, :original_filename)
-          Attachment.new(file.original_filename, File.open(file, 'rb'))
+          Attachment.new(file.original_filename, file.open)
         end
       }.compact
     end

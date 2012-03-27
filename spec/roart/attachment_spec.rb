@@ -27,6 +27,22 @@ describe Roart::Attachment do
       described_class.detect(['/dev/null', '/dev/zero']).first.should be_a(Roart::Attachment)
     end
 
+    it "should create using String filename" do
+      @attachment = described_class.detect('/dev/null').first
+      @attachment.file.should be_a(File)
+    end
+
+    it "should create using File descriptor" do
+      @attachment = described_class.detect(File.open('/dev/null', 'rb')).first
+      @attachment.file.should be_a(File)
+    end
+
+    it "should create using Tempfile instance" do
+      @tempfile = mock(:tempfile, :original_filename => "test name", :open => "file descriptor")
+      @attachment = described_class.detect(@tempfile).first
+      @attachment.file.should == "file descriptor"
+    end
+
   end
 
   describe Roart::AttachmentCollection, ".to_payload" do
