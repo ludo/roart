@@ -7,6 +7,8 @@ class Hash
           "CF-#{key.to_s[3..key.to_s.length].gsub(/_/, " ").camelize.humanize}: #{value}"
         elsif key.to_s.match(/^CF-.+/)
           "#{key.to_s}: #{value}"
+        elsif key.to_s.match(/^[a|A]ttachments/)
+          "Attachment: #{value.join(",")}" if value.kind_of?(Array)
         else
           "#{key.to_s.camelize}: #{value}"
         end
