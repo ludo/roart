@@ -78,7 +78,7 @@ module Roart
     #   tix.comment("This is a comment", :attachments => [params[:attachment_1], params[:attachment_2]])
     #
     def comment(comment, opt = {})
-      comment = {:text => comment, :action => 'Correspond'}.merge(opt)
+      comment = {:text => comment, :action => 'Comment'}.merge(opt)
 
       uri = "#{self.class.connection.server}/REST/1.0/ticket/#{self.id}/comment"
 
