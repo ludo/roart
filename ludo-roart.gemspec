@@ -16,6 +16,4 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency "mechanize", ">= 1.0.0"
   gem.add_runtime_dependency "activesupport", ">= 2.0.0"
-
-  gem.add_development_dependency "bones", ">= 2.5.1"
 end
