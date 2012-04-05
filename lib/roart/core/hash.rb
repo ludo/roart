@@ -9,9 +9,12 @@ class Hash
         if key.to_s.match(/^cf_.+/)
           "CF-#{key.to_s[3..key.to_s.length].gsub(/_/, " ").camelize.humanize}"
         elsif key.to_s.match(/^CF-.+/)
-          "#{key.to_s}"
+          key.to_s
+        elsif key.to_s.match(/^[a|A]ttachments/)
+          values = values.join(",") if values.kind_of?(Array)
+          "Attachment"
         else
-          "#{key.to_s.camelize}"
+          key.to_s.camelize
         end
 
       values = [values] unless values.is_a?(Array)
