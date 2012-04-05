@@ -86,10 +86,10 @@ module Roart
 
       comment.merge!(:attachment => attachments.map(&:name).join(",")) unless attachments.empty?
 
-      resp = self.class.connection.post(uri, {:content => comment.to_content_format}.merge(attachments.to_payload))
+      raw_resp = self.class.connection.post(uri, {:content => comment.to_content_format}.merge(attachments.to_payload))
 
-      resp = resp.split("\n")
-      raise TicketSystemError, "Ticket Comment Failed" unless resp.first.include?("200")
+      resp = raw_resp.split("\n")
+      raise TicketSystemError, "Ticket Comment Failed \n\n RT Response:\n#{raw_resp}" unless resp.first.include?("200")
       !!resp[2].match(/^# Message recorded/)
     end
 
