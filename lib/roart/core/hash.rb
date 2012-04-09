@@ -11,11 +11,12 @@ class Hash
         elsif key.to_s.match(/^CF-.+/)
           key.to_s
         elsif key.to_s.match(/^[a|A]ttachments/)
-          values = values.join(",") if values.kind_of?(Array)
-          "Attachment"
+          nil
         else
           key.to_s.camelize
         end
+
+      next if key_name.nil?
 
       values = [values] unless values.is_a?(Array)
       values.each do |value|
@@ -23,6 +24,7 @@ class Hash
         fields << "#{key_name}: #{value}"
       end
     end
+
     content = fields.compact.sort.join("\n")
   end
 

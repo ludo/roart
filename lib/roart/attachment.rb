@@ -4,13 +4,20 @@ module Roart
     def to_payload
       hash = Hash.new
       self.each_with_index do |attach, index|
-        hash["attachment_#{index+1}"] = attach.file
+        hash["attachment_#{index+1}"] = attach
       end
       hash
     end
   end
 
-  class Attachment < Struct.new(:name, :file)
+  class Attachment < File
+
+    attr_reader :name, :file
+
+    def initialize(name, file)
+      @name = name
+      @file = file
+    end
 
     def path
       name
@@ -18,6 +25,10 @@ module Roart
 
     def read
       file.read
+    end
+
+    def mime_type
+      file.content_type if file.respond_to?(:content_type)
     end
 
     def self.detect(*args)

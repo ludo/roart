@@ -25,9 +25,15 @@ describe 'hash extentions' do
       payload.to_content_format
     end
 
-    it "should include attachments into content" do
-      payload = {:subject => 'A new ticket', :queue => 'My queue', :text => "A text", :attachments => '/dev/null,/dev/zero'}
+    it "should include attachment as singular into content" do
+      payload = {:subject => 'A new ticket', :queue => 'My queue', :text => "A text", :attachment => 'just field'}
       payload.to_content_format.should include("Attachment")
+    end
+
+    it "should NOT include attachments into content" do
+      payload = {:subject => 'A new ticket', :queue => 'My queue', :text => "A text", :attachments => '/dev/null,/dev/zero'}
+      payload.to_content_format.should_not include("Attachment")
+      payload.to_content_format.should_not include("Attachments")
     end
 
   end

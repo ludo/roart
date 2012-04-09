@@ -10,7 +10,7 @@ module Roart
 
       def login(config)
         @conf.merge!(config)
-        agent = Mechanize.new
+        agent = RoartMechanize.new
         page = agent.get(@conf[:server])
         form = page.form('login')
         form.user = @conf[:user]
