@@ -164,7 +164,7 @@ describe "Ticket" do
       describe 'queues' do
         
         it 'should include a queue' do
-          Roart::Ticket.send(:construct_search_uri, {:queue => 'myQueue'}).should == @query + "Queue = 'myQueue'"
+          Roart::Ticket.send(:construct_search_uri, {:queue =>  'myQueue'}).should == @query + "Queue = 'myQueue'"
         end
         
         it 'should take multiple queues' do
@@ -287,6 +287,10 @@ describe "Ticket" do
           Roart::Ticket.send(:construct_search_uri, {:custom_fields => {:phone => ['8675309', '5553265']}}).should == @query + "( 'CF.{phone}' = '8675309' OR 'CF.{phone}' = '5553265' )"
         end
         
+        it 'URI escapes search terms' do
+          Roart::Ticket.send(:construct_search_uri, {:custom_fields => {:greetings => 'FROM#HANOI'}}).should == @query + "'CF.{greetings}' = 'FROM%23HANOI'"
+        end
+
       end
       
       describe 'multiple find options' do

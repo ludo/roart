@@ -406,11 +406,11 @@ module Roart
           if value.is_a?(Array)
             valpart = Array.new
             for val in value
-              valpart << "'CF.{#{field}}' = '#{val.to_s}'"
+              valpart << "'CF.{#{field}}' = '#{URI.escape(val.to_s)}'"
             end
             uri << '( ' + valpart.join(" OR ") + ' )'
           elsif value.is_a?(String)
-            uri << "'CF.{#{field}}' = '#{value.to_s}'"
+            uri << "'CF.{#{field}}' = '#{URI.escape(value.to_s)}'"
           end
         end
       end
